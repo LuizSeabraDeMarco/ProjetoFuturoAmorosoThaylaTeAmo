@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bilhetes para Thayla 💌</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 <style>
   body {
     margin: 0;
@@ -14,43 +15,50 @@
     align-items: center;
     background: radial-gradient(circle at top left, #ffb6c1, #ffc1cc, #ffe6eb);
     font-family: "Poppins", sans-serif;
-    overflow: hidden;
+    overflow: hidden; 
+    position: relative;
+    padding: 20px; 
+    box-sizing: border-box; 
   }
 
   h1 {
-    font-size: 2.8em;
+    font-size: 2em; 
     color: #fff;
     text-shadow: 3px 3px 10px rgba(0,0,0,0.4);
     margin-bottom: 20px;
     animation: fadeIn 2s ease-in-out;
+    z-index: 10;
+    text-align: center; 
   }
 
   .envelope {
     position: relative;
-    width: 300px;
-    height: 200px;
+    width: 280px; 
+    height: 180px; 
     background: #ff4f70;
     border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4); 
     cursor: pointer;
     transition: transform 0.5s ease;
+    z-index: 5;
   }
 
   .envelope:hover {
-    transform: scale(1.05);
+    transform: scale(1.03); 
   }
 
   .flap {
     position: absolute;
     top: 0;
     left: 0;
-    width: 300px;
-    height: 100px;
+    width: 100%; 
+    height: 90px; 
     background: #ff6b8b;
     border-radius: 10px 10px 0 0;
     clip-path: polygon(0 0, 50% 100%, 100% 0);
     transition: transform 0.7s ease;
     transform-origin: top;
+    box-shadow: inset 0 3px 8px rgba(0,0,0,0.1);
   }
 
   .envelope.open .flap {
@@ -62,24 +70,34 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    width: 260px;
-    height: 170px;
+    width: 240px; 
+    height: 150px; 
     background: #fff8b3;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
-    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3), 
+                0 0 8px rgba(255,255,255,0.8) inset;
+    padding: 12px; 
     text-align: center;
-    font-size: 1.05em;
+    font-size: 0.95em; 
     color: #444;
-    line-height: 1.5em;
+    line-height: 1.4em;
     overflow-y: auto;
     opacity: 0;
     transition: all 1s ease;
+    background-image: linear-gradient(to bottom, #dcdcdc 1px, transparent 1px);
+    background-size: 100% 22px; 
+    padding-top: 8px; 
+  }
+  
+  .letter p {
+    line-height: 22px; 
+    margin-top: 0;
   }
 
   .envelope.open .letter {
-    top: -190px;
+    top: -160px; 
     opacity: 1;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
   }
 
   @keyframes fadeIn {
@@ -87,41 +105,118 @@
     to { opacity: 1; transform: translateY(0);}
   }
 
-  /* 💕 Corações flutuantes no fundo */
+  /* 💕 Corações flutuantes no fundo - REDUZIDO PARA 5S */
   .heart {
     position: absolute;
     color: #ff3f6f;
     font-size: 1.5em;
-    animation: float 7s infinite ease-in;
+    animation: float 5s infinite ease-in; /* Duração da subida reduzida (mais rápido) */
     opacity: 0.8;
+    z-index: 0;
   }
+  
+  .heart.small { font-size: 1em; opacity: 0.6; }
+  .heart.large { font-size: 2.5em; opacity: 0.9; }
 
   @keyframes float {
-    0% { transform: translateY(100vh) scale(0.8); opacity: 1; }
-    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    0% { transform: translateY(110vh) translateX(0) scale(0.8); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateY(-10vh) translateX(20px) scale(1.5); opacity: 0; }
+  }
+
+  /* Estilos para a linha de emojis (continua estática) */
+  .emoji-line {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(-100px); 
+    white-space: nowrap; 
+    font-size: 2.5em; 
+    opacity: 1; 
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none; 
+    z-index: 6; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    max-width: 90vw; 
+    overflow: hidden; 
+  }
+
+  /* Media queries para ajustes específicos de desktop */
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 2.8em;
+    }
+    .envelope {
+      width: 300px;
+      height: 200px;
+    }
+    .flap {
+      height: 100px;
+    }
+    .letter {
+      width: 260px;
+      height: 170px;
+      font-size: 1.05em;
+      padding: 15px;
+      line-height: 1.5em;
+      background-size: 100% 25px;
+      padding-top: 10px;
+    }
+    .letter p {
+      line-height: 25px;
+    }
+    .envelope.open .letter {
+      top: -190px;
+    }
+    .emoji-line {
+      font-size: 3em; 
+      transform: translate(-50%, -50%) translateY(-120px); 
+    }
   }
 
 </style>
 </head>
 <body>
 
-<h1>Para Thayla 💖</h1>
+<h1>Para Thayla</h1>
+
+<div class="emoji-line" id="emojiLine">
+  💖✨🌸💫💘💖✨🌸💫
+</div>
 
 <div class="envelope" onclick="openLetter()">
   <div class="flap"></div>
   <div class="letter" id="letter">
-    <p id="message"></p>
+    <p id="message"></p> 
   </div>
 </div>
 
-<!-- 💗 Corações animados no fundo -->
+
 <script>
-  for (let i = 0; i < 25; i++) {
+  // Script para corações flutuantes
+  for (let i = 0; i < 40; i++) {
     const heart = document.createElement("span");
     heart.classList.add("heart");
-    heart.textContent = ["❤", "💗", "💖", "💞", "💕", "💓"][Math.floor(Math.random() * 6)];
+    
+    const symbols = ["❤", "💗", "💖", "💞", "💕", "💓", "💘", "💌", "🧡"];
+    const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+    heart.textContent = symbol;
+
     heart.style.left = Math.random() * 100 + "%";
-    heart.style.animationDelay = Math.random() * 7 + "s";
+    // Reduzido de 10s para 5s para que os corações apareçam mais rápido
+    heart.style.animationDelay = Math.random() * 5 + "s"; 
+    
+    const size = Math.random();
+    if (size < 0.3) {
+      heart.classList.add('small');
+    } else if (size > 0.7) {
+      heart.classList.add('large');
+    }
+    
     document.body.appendChild(heart);
   }
 
@@ -130,9 +225,8 @@
     envelope.classList.toggle('open');
   }
 
-  // 💌 32 mensagens diárias
   const messages = [
-    "Bom dia, Thayla 💕 — só passei pra lembrar que te amo e que o mundo é mais bonito com você nele.",
+    "Oiii amor, eu te amo. Muitooooo! Hoje foi um dia incrivel quero que voce saiba que quero passar o resto da minha vida com vc",
     "Te amo em cada pequeno detalhe, até no jeito que você fala meu nome. 💫",
     "Que o seu dia seja leve, doce e cheio de sorrisos, como o meu quando penso em você. 🌸",
     "Nada me faz mais feliz do que te ver bem. Cuida de você, meu amor. 💖",
@@ -166,7 +260,6 @@
     "Te amo hoje, amanhã e em todos os outros dias que ainda virão. 🌷"
   ];
 
-  // 💫 Escolhe mensagem de acordo com o dia do mês
   const day = new Date().getDate();
   const index = (day - 1) % messages.length;
   document.getElementById("message").textContent = messages[index];
