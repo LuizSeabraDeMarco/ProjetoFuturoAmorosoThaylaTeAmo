@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bilhetes para Thayla 💌</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top left, #ffb6c1, #ffc1cc, #ffe6eb);
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+  }
+
+  h1 {
+    font-size: 2.8em;
+    color: #fff;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.4);
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in-out;
+  }
+
+  .envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: #ff4f70;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.5s ease;
+  }
+
+  .envelope:hover {
+    transform: scale(1.05);
+  }
+
+  .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100px;
+    background: #ff6b8b;
+    border-radius: 10px 10px 0 0;
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    transition: transform 0.7s ease;
+    transform-origin: top;
+  }
+
+  .envelope.open .flap {
+    transform: rotateX(180deg);
+  }
+
+  .letter {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 260px;
+    height: 170px;
+    background: #fff8b3;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    padding: 15px;
+    text-align: center;
+    font-size: 1.05em;
+    color: #444;
+    line-height: 1.5em;
+    overflow-y: auto;
+    opacity: 0;
+    transition: all 1s ease;
+  }
+
+  .envelope.open .letter {
+    top: -190px;
+    opacity: 1;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+
+  /* 💕 Corações flutuantes no fundo */
+  .heart {
+    position: absolute;
+    color: #ff3f6f;
+    font-size: 1.5em;
+    animation: float 7s infinite ease-in;
+    opacity: 0.8;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) scale(0.8); opacity: 1; }
+    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+  }
+
+</style>
+</head>
+<body>
+
+<h1>Para Thayla 💖</h1>
+
+<div class="envelope" onclick="openLetter()">
+  <div class="flap"></div>
+  <div class="letter" id="letter">
+    <p id="message"></p>
+  </div>
+</div>
+
+<!-- 💗 Corações animados no fundo -->
+<script>
+  for (let i = 0; i < 25; i++) {
+    const heart = document.createElement("span");
+    heart.classList.add("heart");
+    heart.textContent = ["❤", "💗", "💖", "💞", "💕", "💓"][Math.floor(Math.random() * 6)];
+    heart.style.left = Math.random() * 100 + "%";
+    heart.style.animationDelay = Math.random() * 7 + "s";
+    document.body.appendChild(heart);
+  }
+
+  function openLetter() {
+    const envelope = document.querySelector('.envelope');
+    envelope.classList.toggle('open');
+  }
+
+  // 💌 32 mensagens diárias
+  const messages = [
+    "Bom dia, Thayla 💕 — só passei pra lembrar que te amo e que o mundo é mais bonito com você nele.",
+    "Te amo em cada pequeno detalhe, até no jeito que você fala meu nome. 💫",
+    "Que o seu dia seja leve, doce e cheio de sorrisos, como o meu quando penso em você. 🌸",
+    "Nada me faz mais feliz do que te ver bem. Cuida de você, meu amor. 💖",
+    "Seu abraço é meu lugar favorito no mundo. 🤍",
+    "Você é o motivo pelo qual até os dias nublados têm cor. 🌦️",
+    "Nunca se esqueça: você é linda, forte e incrivelmente única. 💐",
+    "Quando sinto saudade, fecho os olhos e lembro do seu sorriso. 🌷",
+    "Cada manhã é melhor porque sei que tenho você. ☀️",
+    "Você me inspira a ser alguém melhor todos os dias. ❤️",
+    "Mesmo de longe, sinto você pertinho, como um abraço invisível. 💞",
+    "Amar você é como respirar — algo natural e necessário. 🌹",
+    "Seu jeito de ser é meu refúgio, meu caos e minha paz. 💘",
+    "Você é o tipo de pessoa que o tempo passa e eu continuo me apaixonando igual. 🌻",
+    "Thayla, se eu pudesse, colocaria o seu sorriso em todos os dias da minha vida. 🌙",
+    "Você é poesia, e eu sou o leitor que nunca quer chegar ao fim. 📖💗",
+    "Nada é pequeno quando vem de você — nem um olhar, nem uma palavra. ✨",
+    "Você é a prova viva de que o amor é o sentimento mais bonito que existe. 💕",
+    "Amor, lembre-se: mesmo nos dias difíceis, eu acredito em você. 🌼",
+    "O meu maior privilégio é poder chamar você de 'meu amor'. 💞",
+    "Você me dá vontade de construir todos os futuros possíveis. 💍",
+    "Meu coração tem endereço fixo: o seu nome. 🏡❤️",
+    "Te amar é como ouvir a música certa na hora exata. 🎶",
+    "Não importa o que aconteça, você é o meu sempre. 🌹",
+    "Se eu tivesse que escolher entre o mundo e você, escolheria você — sempre. 🌎❤️",
+    "Você é o sorriso que meu coração dá quando o dia amanhece. ☀️",
+    "Cada dia ao seu lado é um novo motivo pra acreditar no amor. 💗",
+    "O que eu mais amo em você é o que não cabe em palavras. ✨",
+    "Com você, até o silêncio tem significado. 🤍",
+    "Nada é mais certo do que o quanto eu te amo, Thayla. 💘",
+    "Você é o meu destino favorito entre todas as possibilidades. 💞",
+    "Te amo hoje, amanhã e em todos os outros dias que ainda virão. 🌷"
+  ];
+
+  // 💫 Escolhe mensagem de acordo com o dia do mês
+  const day = new Date().getDate();
+  const index = (day - 1) % messages.length;
+  document.getElementById("message").textContent = messages[index];
+</script>
+
+</body>
+</html>
