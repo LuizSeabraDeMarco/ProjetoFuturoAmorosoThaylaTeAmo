@@ -26,12 +26,12 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    z-index: 5; /* Garante que o envelope fique acima dos corações */
-    position: relative; /* Ponto de referência para a carta subir */
-    margin-top: 150px; /* Desce o envelope um pouco para dar espaço ao título/data */
+    z-index: 5;
+    position: relative;
+    margin-top: 200px; 
   }
 
-  /* Estilo para a data: Fixado no topo, centralizado */
+  /* Estilo para a data: Fixado no topo */
   #current-date {
     position: absolute;
     top: 20px;
@@ -41,15 +41,16 @@
     color: #fff;
     opacity: 0.8;
     text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-    z-index: 20; /* Fica acima de tudo */
-    white-space: nowrap; /* Evita quebras de linha */
+    z-index: 20; 
+    white-space: nowrap;
   }
   
+  /* TÍTULO */
   h1 {
     position: absolute;
-    top: 40px; /* Abaixo da data */
+    top: 100px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); 
     font-size: 2em; 
     color: #fff;
     text-shadow: 3px 3px 10px rgba(0,0,0,0.4);
@@ -58,12 +59,13 @@
     z-index: 20; 
     text-align: center; 
     white-space: nowrap;
+    will-change: transform, opacity; 
   }
 
-  /* Estilos para a linha de emojis: Fixado acima do envelope */
+  /* Estilos para a linha de emojis: Fixado abaixo do H1 */
   .emoji-line {
     position: absolute;
-    top: 110px; /* Posição fixa acima do envelope (que está no .main-container) */
+    top: 170px;
     left: 50%;
     transform: translateX(-50%); 
     white-space: nowrap; 
@@ -89,7 +91,7 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.4); 
     cursor: pointer;
     transition: transform 0.5s ease;
-    z-index: 5;
+    z-index: 5; 
   }
 
   .envelope:hover {
@@ -137,7 +139,7 @@
     background-image: linear-gradient(to bottom, #dcdcdc 1px, transparent 1px);
     background-size: 100% 22px; 
     padding-top: 8px; 
-    z-index: 4; /* Abaixo do envelope, mas aparecerá acima de tudo o mais */
+    z-index: 4; 
   }
   
   .letter p {
@@ -145,49 +147,57 @@
     margin-top: 0;
   }
 
+  /* CHAVE: Z-index da carta aberta para FICAR NA FRENTE DE TUDO */
   .envelope.open .letter {
-    top: -160px; /* Posição final de subida */
+    top: -160px;
     opacity: 1;
     box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
+    z-index: 9999; 
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px);}
-    to { opacity: 1; transform: translateY(0);}
+    from { 
+        opacity: 0; 
+        transform: translateX(-50%) translateY(-20px) translateZ(0);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(-50%) translateY(0) translateZ(0); 
+    }
   }
 
-  /* 💕 Corações flutuantes no fundo - REINSERIDO */
+  /* Corações flutuantes no fundo */
   .heart {
     position: absolute;
     color: #ff3f6f;
     font-size: 1.5em;
-    animation: float 5s infinite ease-in; /* Duração da subida */
+    animation: float 5s infinite ease-in;
     opacity: 0.8;
-    z-index: 0; /* Fica no fundo */
+    z-index: 0; 
   }
   
   .heart.small { font-size: 1em; opacity: 0.6; }
   .heart.large { font-size: 2.5em; opacity: 0.9; }
 
   @keyframes float {
-    0% { transform: translateY(110vh) translateX(0) scale(0.8); opacity: 0; } /* Começa mais abaixo e invisível */
+    0% { transform: translateY(110vh) translateX(0) scale(0.8); opacity: 0; }
     20% { opacity: 1; }
     80% { opacity: 1; }
-    100% { transform: translateY(-10vh) translateX(20px) scale(1.5); opacity: 0; } /* Sobe até acima da tela */
+    100% { transform: translateY(-10vh) translateX(20px) scale(1.5); opacity: 0; }
   }
   
   /* Media queries para ajustes específicos de desktop */
   @media (min-width: 768px) {
     .main-container {
-        margin-top: 180px;
+        margin-top: 250px; 
     }
     h1 {
       font-size: 2.8em;
-      top: 50px;
+      top: 120px; 
     }
     .emoji-line {
       font-size: 3em; 
-      top: 140px;
+      top: 210px; 
     }
     .envelope {
       width: 300px;
@@ -213,16 +223,12 @@
     }
   }
 
-
 </style>
 </head>
 <body>
 
 <p id="current-date"></p>
 <h1>Para Thayla 💖</h1>
-<div class="emoji-line" id="emojiLine">
-  💖✨🌸💫💘💖✨🌸💫
-</div>
 
 <div class="main-container">
 
@@ -247,11 +253,12 @@
   displayCurrentDate();
 
 
-  // Script para corações flutuantes (inalterado no JS)
+  // Script para corações flutuantes
   for (let i = 0; i < 40; i++) {
     const heart = document.createElement("span");
     heart.classList.add("heart");
     
+    // Lista original de símbolos para os corações flutuantes
     const symbols = ["❤", "💗", "💖", "💞", "💕", "💓", "💘", "💌", "🧡"];
     const symbol = symbols[Math.floor(Math.random() * symbols.length)];
     heart.textContent = symbol;
