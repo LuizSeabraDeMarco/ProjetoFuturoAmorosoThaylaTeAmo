@@ -19,7 +19,6 @@
     box-sizing: border-box; 
   }
 
-  /* CONTAINER PRINCIPAL: Centraliza o Envelope/Carta */
   .main-container {
     display: flex;
     flex-direction: column;
@@ -31,7 +30,6 @@
     margin-top: 200px; 
   }
 
-  /* Estilo para a data: Fixado no topo */
   #current-date {
     position: absolute;
     top: 20px;
@@ -45,7 +43,6 @@
     white-space: nowrap;
   }
   
-  /* TÍTULO */
   h1 {
     position: absolute;
     top: 100px;
@@ -62,7 +59,6 @@
     will-change: transform, opacity; 
   }
 
-  /* Estilos para a linha de emojis: Fixado abaixo do H1 */
   .emoji-line {
     position: absolute;
     top: 170px;
@@ -81,7 +77,6 @@
     overflow: hidden; 
   }
 
-  /* Envelope no centro */
   .envelope {
     position: relative;
     width: 280px; 
@@ -116,7 +111,6 @@
     transform: rotateX(180deg);
   }
 
-  /* Carta que Sobe */
   .letter {
     position: absolute;
     top: 100%;
@@ -147,7 +141,6 @@
     margin-top: 0;
   }
 
-  /* CHAVE: Z-index da carta aberta para FICAR NA FRENTE DE TUDO */
   .envelope.open .letter {
     top: -160px;
     opacity: 1;
@@ -166,7 +159,6 @@
     }
   }
 
-  /* Corações flutuantes no fundo */
   .heart {
     position: absolute;
     color: #ff3f6f;
@@ -185,27 +177,13 @@
     80% { opacity: 1; }
     100% { transform: translateY(-10vh) translateX(20px) scale(1.5); opacity: 0; }
   }
-  
-  /* Media queries para ajustes específicos de desktop */
+
   @media (min-width: 768px) {
-    .main-container {
-        margin-top: 250px; 
-    }
-    h1 {
-      font-size: 2.8em;
-      top: 120px; 
-    }
-    .emoji-line {
-      font-size: 3em; 
-      top: 210px; 
-    }
-    .envelope {
-      width: 300px;
-      height: 200px;
-    }
-    .flap {
-      height: 100px;
-    }
+    .main-container { margin-top: 250px; }
+    h1 { font-size: 2.8em; top: 120px; }
+    .emoji-line { font-size: 3em; top: 210px; }
+    .envelope { width: 300px; height: 200px; }
+    .flap { height: 100px; }
     .letter {
       width: 260px;
       height: 170px;
@@ -215,14 +193,9 @@
       background-size: 100% 25px;
       padding-top: 10px;
     }
-    .letter p {
-      line-height: 25px;
-    }
-    .envelope.open .letter {
-      top: -190px;
-    }
+    .letter p { line-height: 25px; }
+    .envelope.open .letter { top: -190px; }
   }
-
 </style>
 </head>
 <body>
@@ -241,9 +214,7 @@
 
 </div>
 
-
 <script>
-  // FUNÇÃO PARA EXIBIR A DATA DO DIA
   function displayCurrentDate() {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const today = new Date().toLocaleDateString('pt-BR', options); 
@@ -252,13 +223,9 @@
   }
   displayCurrentDate();
 
-
-  // Script para corações flutuantes
   for (let i = 0; i < 40; i++) {
     const heart = document.createElement("span");
     heart.classList.add("heart");
-    
-    // Lista original de símbolos para os corações flutuantes
     const symbols = ["❤", "💗", "💖", "💞", "💕", "💓", "💘", "💌", "🧡"];
     const symbol = symbols[Math.floor(Math.random() * symbols.length)];
     heart.textContent = symbol;
@@ -267,11 +234,8 @@
     heart.style.animationDelay = Math.random() * 5 + "s"; 
     
     const size = Math.random();
-    if (size < 0.3) {
-      heart.classList.add('small');
-    } else if (size > 0.7) {
-      heart.classList.add('large');
-    }
+    if (size < 0.3) heart.classList.add('small');
+    else if (size > 0.7) heart.classList.add('large');
     
     document.body.appendChild(heart);
   }
@@ -281,46 +245,55 @@
     envelope.classList.toggle('open');
   }
 
-  // Mensagens
   const messages = [
-    "Oiii, Thayla! Meu amor, a verdade é que eu sou Exagerado por você. 🎸 Sabe aquele amor 'desmedido, alucinado, total'? É o que eu sinto. Hoje foi um dia incrível – e com você, todos os meus dias são. Quero você, e quero a sorte de um amor tranquilo, mas não quero abrir mão do exagero de te querer para o resto de todas as minhas vidas.",
-    "Bom dia, Thayla 💕 — só passei pra lembrar que te amo e que o mundo é mais bonito com você nele.",
-    "Te amo em cada pequeno detalhe, até no jeito que você fala meu nome. 💫",
-    "Que o seu dia seja leve, doce e cheio de sorrisos, como o meu quando penso em você. 🌸",
-    "Nada me faz mais feliz do que te ver bem. Cuida de você, meu amor. 💖",
-    "Seu abraço é meu lugar favorito no mundo. 🤍",
-    "Você é o motivo pelo qual até os dias nublados têm cor. 🌦️",
-    "Nunca se esqueça: você é linda, forte e incrivelmente única. 💐",
-    "Quando sinto saudade, fecho os olhos e lembro do seu sorriso. 🌷",
-    "Cada manhã é melhor porque sei que tenho você. ☀️",
-    "Você me inspira a ser alguém melhor todos os dias. ❤️",
-    "Mesmo de longe, sinto você pertinho, como um abraço invisível. 💞",
-    "Amar você é como respirar — algo natural e necessário. 🌹",
-    "Seu jeito de ser é meu refúgio, meu caos e minha paz. 💘",
-    "Você é o tipo de pessoa que o tempo passa e eu continuo me apaixonando igual. 🌻",
-    "Thayla, se eu pudesse, colocaria o seu sorriso em todos os dias da minha vida. 🌙",
-    "Você é poesia, e eu sou o leitor que nunca quer chegar ao fim. 📖💗",
-    "Nada é pequeno quando vem de você — nem um olhar, nem uma palavra. ✨",
-    "Você é a prova viva de que o amor é o sentimento mais bonito que existe. 💕",
-    "Amor, lembre-se: mesmo nos dias difíceis, eu acredito em você. 🌼",
-    "O meu maior privilégio é poder chamar você de 'meu amor'. 💞",
-    "Você me dá vontade de construir todos os futuros possíveis. 💍",
-    "Meu coração tem endereço fixo: o seu nome. 🏡❤️",
-    "Te amar é como ouvir a música certa na hora exata. 🎶",
-    "Não importa o que aconteça, você é o meu sempre. 🌹",
-    "Se eu tivesse que escolher entre o mundo e você, escolheria você — sempre. 🌎❤️",
-    "Você é o sorriso que meu coração dá quando o dia amanhece. ☀️",
-    "Cada dia ao seu lado é um novo motivo pra acreditar no amor. 💗",
-    "O que eu mais amo em você é o que não cabe em palavras. ✨",
-    "Com você, até o silêncio tem significado. 🤍",
-    "Nada é mais certo do que o quanto eu te amo, Thayla. 💘",
-    "Você é o meu destino favorito entre todas as possibilidades. 💞",
-    "Te amo hoje, amanhã e em todos os outros dias que ainda virão. 🌷"
+    "Oiii, Thayla! Meu amor, a verdade é que eu sou Exagerado por você. 🎸 ...",
+    "Bom dia, Thayla 💕 — só passei pra lembrar que te amo...",
+    "Te amo em cada pequeno detalhe...",
+    "Que o seu dia seja leve...",
+    "Nada me faz mais feliz do que te ver bem...",
+    "Seu abraço é meu lugar favorito...",
+    "Você é o motivo pelo qual até os dias nublados têm cor...",
+    "Nunca se esqueça: você é linda e forte...",
+    "Quando sinto saudade, lembro do seu sorriso...",
+    "Cada manhã é melhor porque tenho você...",
+    "Você me inspira...",
+    "Mesmo de longe, sinto você pertinho...",
+    "Amar você é como respirar...",
+    "Seu jeito é meu refúgio...",
+    "Você é o tipo de pessoa que o tempo passa e eu continuo me apaixonando...",
+    "Se eu pudesse, colocaria seu sorriso em todos os dias...",
+    "Você é poesia...",
+    "Nada é pequeno quando vem de você...",
+    "Você é a prova viva de que o amor é bonito...",
+    "Mesmo nos dias difíceis eu acredito em você...",
+    "O meu maior privilégio é chamar você de meu amor...",
+    "Você me dá vontade de construir futuros...",
+    "Meu coração tem seu nome...",
+    "Te amar é ouvir a música certa...",
+    "Não importa o que aconteça, você é o meu sempre...",
+    "Eu escolheria você em qualquer mundo...",
+    "Você é o sorriso da minha manhã...",
+    "Cada dia ao seu lado é um motivo pra acreditar no amor...",
+    "O que eu mais amo em você não cabe em palavras...",
+    "Com você até o silêncio é especial...",
+    "Nada é mais certo que o quanto eu te amo...",
+    "Você é meu destino favorito...",
+    "Te amo hoje, amanhã e sempre..."
   ];
 
   const day = new Date().getDate();
   const index = (day - 1) % messages.length;
   document.getElementById("message").textContent = messages[index];
+
+  // -------------------------
+  // FUNÇÃO PARA ALTERAR A MENSAGEM DO DIA
+  // -------------------------
+  function setMensagemDoDia(texto) {
+    document.getElementById("message").textContent = texto;
+  }
+
+  // DEFINA A MENSAGEM DO DIA AQUI:
+  setMensagemDoDia("Boa prova meu bem, confio mt em vc. Vc é a pessoa mais incrivel do Mundo, EU TE AMO");
 </script>
 
 </body>
